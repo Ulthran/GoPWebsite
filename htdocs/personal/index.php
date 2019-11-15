@@ -2,7 +2,7 @@
     
     <head>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-head.html'; ?>
-        <link rel="stylesheet" src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/assets/workout.css">
+        <link rel="stylesheet" src="../assets/personal.css">
     </head
 
     <body>
@@ -11,6 +11,8 @@
         <div>
             <p>COMING SOON</p>
         </div>
+
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-scripts.html'; ?>
       
     </body>
     

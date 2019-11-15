@@ -1,36 +1,23 @@
+<!--Template index.php file
+Intended to be copied to start any new page on the site
+Note that you have to change the link to the new page's .css file-->
+
 <html>
     
     <?php require $_SERVER['DOCUMENT_ROOT'] . '/assets/functions.php'; ?>
 
     <head>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-head.html'; ?>
-        <link rel="stylesheet" src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/assets/workout.css">
+        <link rel="stylesheet" src="../assets/CHANGE_THIS.css">
     </head
 
     <body>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-body.html'; ?>
 
-        <div class="filter">
-            <p>Filtering options for films</p>
-        </div>
-
         <div class="vid-list">
             <p>First video: </p>
             <?php
-            $servername = "sql303.epizy.com";
-            $database = "epiz_24783286_ctbus_gop";
-            $username = "epiz_24783286";
-            $password = "Pv4KJLgmURsD";
-
-            // Create connection
-
-            $conn = mysqli_connect($servername, $username, $password, $database);
-
-            // Check connection
-
-            if ($conn->connect_error || $conn == 0) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            $conn = connect_db();
 
             $query = "SELECT * FROM film";
             $result = mysqli_query($conn, $query);
@@ -41,6 +28,8 @@
             mysqli_close($conn);
             ?>
         </div>
+
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-scripts.html'; ?>
       
     </body>
     
