@@ -4,7 +4,7 @@ function connect_db() {
     $servername = "sql303.epizy.com";
     $database = "epiz_24783286_ctbus_gop";
     $username = "epiz_24783286";
-    $password = "Pv4KJLgmURsD";
+    $password = "---------";
 
     // Create connection
 
