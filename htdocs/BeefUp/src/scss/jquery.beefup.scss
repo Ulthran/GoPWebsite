@@ -1,0 +1,84 @@
+$beefup: 'beefup' !default;
+$beefup-border-color: #ddd !default;
+$beefup-border-color-hover: #ccc !default;
+$beefup-icon-color: #ccc !default;
+$beefup-icon-size: 6px !default;
+
+.#{$beefup} {
+	margin: 1em 0;
+	border: 1px solid $beefup-border-color;
+	border-radius: 4px;
+
+	&:hover {
+		border-color: $beefup-border-color-hover;
+	}
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&__head,
+	&__body {
+		padding: 10px 20px;
+	}
+
+	&__head {
+		cursor: pointer;
+		position: relative;
+		margin: 0;
+		padding-right: 50px;
+
+		// Button
+		@at-root button#{&},
+		& > button {
+			cursor: pointer;
+			display: block;
+			width: 100%;
+			background: none;
+			border: 0;
+			font: inherit;
+			text-align: inherit;
+
+			&[aria-disabled] {
+				cursor: default;
+				outline: 0;
+			}
+		}
+
+		> button {
+			position: relative;
+			z-index: 1;
+			margin: -10px -50px -10px -20px;
+			padding: inherit;
+			width: calc(100% + 70px);
+			background: inherit;
+			border: inherit;
+		}
+
+		// Icon
+		&::after {
+			transition: transform 0.2s ease-out;
+			content: '';
+			transform: translate(0, -50%) rotate(45deg);
+			position: absolute;
+			top: 50%;
+			right: 20px;
+			z-index: 0;
+			margin-top: -$beefup-icon-size / 3;
+			padding: $beefup-icon-size / 2;
+			border-width: 0 2px 2px 0;
+			border-style: solid;
+			color: $beefup-icon-color;
+		}
+	}
+
+	// Open
+	&.is-open {
+		> .#{$beefup}__head {
+			&::after {
+				transform: translate(0, -50%) rotate(225deg);
+				margin-top: $beefup-icon-size / 3;
+			}
+		}
+	}
+}

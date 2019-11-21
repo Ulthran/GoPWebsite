@@ -36,3 +36,11 @@
     height: 500px;
 }
 
+.compressible-exercise {
+    display: none;
+}
+
+.title-container h1 {
+    cursor: pointer;
+}
+

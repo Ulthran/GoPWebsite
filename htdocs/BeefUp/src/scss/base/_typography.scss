@@ -1,0 +1,70 @@
+body {
+	color: $color-text;
+	font-family: $font-family;
+	font-weight: 300;
+}
+
+h1 {
+	font-size: 48px;
+}
+
+h2 {
+	font-size: 32px;
+}
+
+h3 {
+	font-size: 24px;
+}
+
+h4,
+h5,
+p {
+	font-size: 18px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-weight: bold;
+	line-height: 1.5;
+}
+
+h2,
+h3,
+h4,
+h5,
+p {
+	margin-bottom: 20px;
+}
+
+a {
+    color: inherit;
+}
+
+hr {
+	clear: both;
+	margin: 40px 0;
+	height: 0;
+	border: solid $color-border;
+	border-width: 1px 0 0;
+}
+
+pre {
+	overflow: auto;
+	position: relative;
+	margin: 1em 0;
+	padding: 20px;
+	background-color: $color-text;
+	border-radius: 4px;
+	box-shadow: 0 12px 36px 8px rgba($color-text, 0.1);
+	color: $color-background;
+	font-family: $font-family-code;
+	font-size: 0.85em;
+	font-weight: normal;
+	font-style: normal;
+	line-height: 1.6;
+	tab-size: 2;
+	-webkit-font-smoothing: auto;
+}

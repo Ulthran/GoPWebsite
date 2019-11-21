@@ -32,10 +32,13 @@ Used for viewing film along side scrolling notes-->
 
             <div class="title">
                 <?php
-                $query = "SELECT VideoName, Tournament, Year FROM film WHERE RandID = " . ($_GET['id']);
-                # NOTE: Add check to make sure user has access to this video
+                $query = "SELECT VideoName, Tournament, Year, Private FROM film WHERE RandID = " . ($_GET['id']);
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result)) {
+                    #Redirect if they got here by accident or some other way but don't have permissions
+                    if ($row['Private'] == 1 && $_SESSION['AccountType'] != "GoPper") {
+                        header("Location: http://goppyworky.2kool4u.net/");
+                    }
                     echo "<h1>" . ($row['VideoName']) . "</h1>";
                     echo "<h2>" . ($row['Tournament']) . ", " . ($row['Year']) . "</h2>";
                 }
@@ -45,7 +48,6 @@ Used for viewing film along side scrolling notes-->
             <div class="video">
                 <?php
                 $query = "SELECT VideoLink FROM film WHERE RandID = " . ($_GET['id']);
-                # NOTE: Add check to make sure user has access to this video
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result)) {
                     $src = 'https://www.youtube.com/embed/' . ($row['VideoLink']);
@@ -54,13 +56,11 @@ Used for viewing film along side scrolling notes-->
                 echo '<iframe width="1100" height="450" src="' . $src . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                 ?>
 
-                <!--<iframe width="1100" height="350" src="https://www.youtube.com/embed/t9vSEpDuCcI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
             </div>
 
             <div class="notes">
                 <?php
                 $query = "SELECT Notes FROM film WHERE RandID = " . ($_GET['id']);
-                # NOTE: Add check to make sure user has access to this video
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result)) {
                     echo ($row['Notes']);

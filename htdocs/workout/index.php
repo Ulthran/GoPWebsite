@@ -10,7 +10,7 @@
             require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-head.html';
         }    
         ?>
-        <link rel="stylesheet" src="../assets/workout.css">
+        <link rel="stylesheet" href="../assets/workout.css">
     </head
 
     <body>
@@ -30,9 +30,20 @@
             <p>Filters to apply to workouts; stage/season, lifting/running/plyo, etc</p>
         </div>
 
+        <a href="http://goppyworky.2kool4u.net/exercise/" style="padding:20px;">View Exercises</a>
+
         <div class="wkout-list">
-            <p>List of workout options</p>
+            <?php
+            $conn = connect_db();
+            
+            $workout_query = mysqli_query($conn, "SELECT * FROM workouts");
+            while ($row = mysqli_fetch_assoc($workout_query)) {
+                echo "<div class='wkout'><a href='http://goppyworky.2kool4u.net/workout/view?id=".$row['IndexCol']."'>".$row['Name']."</a></div>";
+            }
+            ?>
         </div>
+
+        <?php mysqli_close($conn); ?>
 
         <?php if ($success) {require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-scripts.html';} ?>
       

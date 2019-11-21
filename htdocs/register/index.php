@@ -38,19 +38,17 @@ if(!empty($_POST['username']) && !empty($_POST['password']))
      }
      else
      {
-        // Check for Carleton domain
-        $parts = explode('@', $email);
-        $domain = array_pop($parts);
+        $verified_gopper_query = mysqli_query($conn, "SELECT Email FROM verified_goppers WHERE Email='".$email."'");
         $account_type = "Other";
-        if ($domain == "carleton.edu") {
-            $account_type = "Carleton";
+        if (mysqli_num_rows($verified_gopper_query) >= 1) {
+            $account_type = "GoPper";
         }
-
-        $registerquery = mysqli_query($conn, "INSERT INTO unverified_users (Username, Password, Email, AccountType) VALUES('".$username."', '".$password."', '".$email."', '".$account_type."')");
-        if($registerquery)
-        {
+        $rand_id = rand();
+        $registerquery = mysqli_query($conn, "INSERT INTO unverified_users (Username, Password, Email, AccountType, RandID) VALUES('".$username."', '".$password."', '".$email."', '".$account_type."', '".$rand_id."')");
+        if ($registerquery) {
             echo "<h1>Success</h1>";
-            echo "<p>An email has been sent to your account with a link to activate your account. Please <a href='http://goppyworky.2kool4u.net/login/'>click here to login</a> once you have activated your account.</p>";
+            send_email($email, $username, 'Verification of Account', 'TEST MESSAGE');
+            echo "<p>Your account is now ready to be activated ".$username.". You will be added to the permissions group ".$account_type.". Once you've verified your email with the link that has just been sent, <a href='http://goppyworky.2kool4u.net/login/'>login</a> to access your account.</p>";
         }
         else
         {

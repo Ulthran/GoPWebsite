@@ -8,7 +8,7 @@ Note that you have to change the link to the new page's .css file-->
 
     <head>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-head.html'; ?>
-        <link rel="stylesheet" src="../assets/CHANGE_THIS.css">
+        <link rel="stylesheet" href="../assets/CHANGE_THIS.css">
     </head
 
     <body>

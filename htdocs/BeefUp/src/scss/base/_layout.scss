@@ -1,0 +1,67 @@
+html {
+	background: $color-background;
+}
+
+header,
+footer {
+	background: $color-brand;
+	color: $color-background;
+}
+
+header > div,
+footer > div,
+main {
+	margin: 0 auto;
+	padding: 30px 20px;
+	max-width: 1000px;
+}
+
+header {
+	> div {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	h1 {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+
+		> strong {
+			margin-right: 20px;
+		}
+
+		> span {
+			display: block;
+			font-size: 0.5em;
+			font-weight: normal;
+			line-height: 1.2;
+		}
+	}
+
+	a {
+		margin-left: 20px;
+	}
+}
+
+footer {
+	p {
+		margin: 0;
+		font-size: 16px;
+	}
+
+	a {
+		font-weight: bold;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+article {
+	display: block;
+	background: $color-background;
+}

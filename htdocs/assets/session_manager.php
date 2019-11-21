@@ -26,20 +26,20 @@ elseif(!empty($_POST['username']) && !empty($_POST['password']))
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     
     $query = "SELECT * FROM users WHERE Username = '".$username."'";
-    echo $query;
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) == 1) {
         while($row = mysqli_fetch_assoc($result)) {
             $email = $row['Email'];
             $hash = $row['Password'];
-            echo "HEY: ".$email;
+            $account_type = $row['AccountType'];
         }
         
         if (password_verify($password, $hash)) {
             $_SESSION['Username'] = $username;
             $_SESSION['EmailAddress'] = $email;
             $_SESSION['LoggedIn'] = 1;
+            $_SESSION['AccountType'] = $account_type;
          
             echo "<meta http-equiv='refresh' content='=2;index.php' />";
             $success = true;
@@ -57,7 +57,6 @@ else
 {
     //header('Location: http://goppyworky.2kool4u.net/login/'); //Force users to have accounts
     // Right now, if you don't have an account, you can still access almost everything
-    echo "WHAT THE FUCK";
     $error_code = 3;
 }
 
