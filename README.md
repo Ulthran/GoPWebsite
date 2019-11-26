@@ -15,8 +15,12 @@ Some things to note:
  - Some data tables are left out of the schema (users, film, etc). This is to protect user information and to not release information that is available only to specific types of account holders. This is the one part of the project not intended to be open source.
  - All passwords used on the server side are stored in a php file kept in the root dir called 'are_these_bananas.php'. This file is also not included here (for obvious reasons). The basic format is:
     \<\?php
+    
        // This is a password for the SMTP server
+       
        $smtp_password = 'password123';
+       
        // ...
+       
     \?\>
 
