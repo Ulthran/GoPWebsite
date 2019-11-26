@@ -19,9 +19,9 @@ Used for viewing exercises along with notes-->
     <body>
         <?php 
         if ($success) {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-body.html';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-body.php';
         } else {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.html';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.php';
         }
 
         $conn = connect_db();
@@ -31,7 +31,8 @@ Used for viewing exercises along with notes-->
 
             <div class="title">
                 <?php
-                $query = "SELECT * FROM exercises WHERE IndexCol = " . ($_GET['id']);
+                $id = mysqli_real_escape_string($conn, $_GET['id']);
+                $query = "SELECT * FROM exercises WHERE IndexCol = " . $id;
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result)) {
                     echo "<h1>" . ($row['Name']) . "</h1>";

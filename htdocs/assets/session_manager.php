@@ -11,6 +11,7 @@ $success = false;
 // 1 : Wrong password
 // 2 : Account not found
 // 3 : Not trying to log in or register
+// 4 : Account login attempts maxed out
 $error_code = 0;
 
 ?>
@@ -33,9 +34,12 @@ elseif(!empty($_POST['username']) && !empty($_POST['password']))
             $email = $row['Email'];
             $hash = $row['Password'];
             $account_type = $row['AccountType'];
+            $attempts = $row['LoginAttempts'];
         }
-        
-        if (password_verify($password, $hash)) {
+
+        if ($attempts >= 50) {
+            $error_code = 4;
+        } elseif (password_verify($password, $hash)) {
             $_SESSION['Username'] = $username;
             $_SESSION['EmailAddress'] = $email;
             $_SESSION['LoggedIn'] = 1;
@@ -45,11 +49,14 @@ elseif(!empty($_POST['username']) && !empty($_POST['password']))
             $success = true;
         } else {
             $error_code = 1;
+            $query = "UPDATE users SET LoginAttempts = '".($attempts+1)."' WHERE Username='".$username."'";
+            mysqli_query($conn, $query);
         }
     }
     else
     {
         $error_code = 2;
+        // Don't increment account login attempts here because the username doesn't match any existing one
     }
 
 }

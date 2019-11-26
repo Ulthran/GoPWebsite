@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.html'; ?>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.php'; ?>
 
 <body>
 
@@ -25,13 +25,15 @@
     </fieldset>
     </form>
 
-    <!--<?php 
+    <?php 
     if ($error_code == 1) {
         echo "<p>Password doesn't match.</p>";
-    } else {
+    } elseif ($error_code == 2) {
         echo "<p>Can't find your account.</p>";
+    } elseif ($error_code == 4) {
+        echo "<p>Looks like you've maxed out your incorrect login attempts for the day. If you think this is a mistake, you should contact the site administrator (ctbushman@gmail.com) so we can make sure this isn't an indication of malicious activity.</p>";
     }
-     ?>-->
+     ?>
 
 </body>
 

@@ -25,9 +25,9 @@ Used for viewing workouts along with notes-->
     <body>
         <?php 
         if ($success) {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-body.html';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-body.php';
         } else {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.html';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.php';
         }    
         ?>
 
@@ -38,7 +38,8 @@ Used for viewing workouts along with notes-->
 
             <div class="title">
                 <?php
-                $query = "SELECT * FROM workouts WHERE IndexCol = " . ($_GET['id']);
+                $id = mysqli_real_escape_string($conn, $_GET['id']);
+                $query = "SELECT * FROM workouts WHERE IndexCol = " . $id;
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result)) {
                     echo "<h1>" . ($row['Name']) . "</h1>";
@@ -49,7 +50,7 @@ Used for viewing workouts along with notes-->
 <!--
             <div class="video">
                 <?php
-                $query = "SELECT Link FROM film WHERE RandID = " . ($_GET['id']);
+                $query = "SELECT Link FROM film WHERE RandID = " . $id;
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result)) {
                     $src = 'https://www.youtube.com/embed/' . ($row['VideoLink']);
@@ -62,7 +63,7 @@ Used for viewing workouts along with notes-->
 -->
             <div class="notes">
                 <?php
-                $query = "SELECT * FROM workouts WHERE IndexCol = " . ($_GET['id']);
+                $query = "SELECT * FROM workouts WHERE IndexCol = " . $id;
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result)) {
                     echo "<p>" . ($row['Description']) . "<br/><br/>Estimated Time: " . ($row['EstimatedTime']) . "</p>";
@@ -72,7 +73,7 @@ Used for viewing workouts along with notes-->
             </div>           
 
             <?php
-            $query = "SELECT * FROM ex_wk_junction WHERE WkIndex = " . ($_GET['id']);
+            $query = "SELECT * FROM ex_wk_junction WHERE WkIndex = " . $id;
             $result = mysqli_query($conn, $query);
             $count = 0;
             while ($row = mysqli_fetch_assoc($result)) {

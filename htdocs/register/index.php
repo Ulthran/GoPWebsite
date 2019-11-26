@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.html'; ?>
+    <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.php'; ?>
 
 <body>
 
@@ -36,6 +36,10 @@ if(!empty($_POST['username']) && !empty($_POST['password']))
         echo "<h1>Error</h1>";
         echo "<p>Sorry, ".$email." is not valid. Please use a real email.</p>";
      }
+     elseif (!ctype_alnum($username)) {
+         echo "<h1>Error</h1>";
+         echo "<p>Sorry, your username must be all alphanumeric characters.</p>";
+     }
      else
      {
         $verified_gopper_query = mysqli_query($conn, "SELECT Email FROM verified_goppers WHERE Email='".$email."'");
@@ -43,11 +47,14 @@ if(!empty($_POST['username']) && !empty($_POST['password']))
         if (mysqli_num_rows($verified_gopper_query) >= 1) {
             $account_type = "GoPper";
         }
-        $rand_id = rand();
-        $registerquery = mysqli_query($conn, "INSERT INTO unverified_users (Username, Password, Email, AccountType, RandID) VALUES('".$username."', '".$password."', '".$email."', '".$account_type."', '".$rand_id."')");
+        $randID = rand();
+        $verCode = rand();
+        $registerquery = mysqli_query($conn, "INSERT INTO unverified_users (Username, Password, Email, AccountType, RandID, VerificationCode) VALUES('".$username."', '".$password."', '".$email."', '".$account_type."', '".$randID."', '".$verCode."')");
         if ($registerquery) {
             echo "<h1>Success</h1>";
-            send_email($email, $username, 'Verification of Account', 'TEST MESSAGE');
+            $message = "<h1>Hello from the GoP!</h1><br/><p>Please follow this link: <a href='http://goppyworky.2kool4u.net/verification?user=".$username."&id=".$randID."'>http://goppyworky.2kool4u.net/verification?user=".$username."&id=".$randID."</a> to activate your account, ".$username.". On this page, you will be promted for the following verification code: ".$verCode.".</p><br/><p>Signed,</p><p>A lumpy Goose</p>";
+            send_email($email, $username, 'Verification of Account', $message);
+            echo "If your seeing a Deprecated warning here ^, just ignore plz. Will disappear when site is in production mode.";
             echo "<p>Your account is now ready to be activated ".$username.". You will be added to the permissions group ".$account_type.". Once you've verified your email with the link that has just been sent, <a href='http://goppyworky.2kool4u.net/login/'>login</a> to access your account.</p>";
         }
         else

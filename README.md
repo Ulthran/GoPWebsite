@@ -21,4 +21,7 @@ Some things to note:
        
        // ...
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8bee0a9879d65e87c911452375f8faa0775a64f7

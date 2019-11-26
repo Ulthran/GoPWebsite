@@ -16,9 +16,9 @@
     <body>
         <?php 
         if ($success) {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-body.html';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-body.php';
         } else {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.html';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.php';
         }    
         ?>
 

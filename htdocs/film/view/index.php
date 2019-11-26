@@ -19,9 +19,9 @@ Used for viewing film along side scrolling notes-->
     <body>
         <?php 
         if ($success) {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-body.html';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-body.php';
         } else {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.html';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-login-signup-body.php';
         }    
         ?>
 
@@ -32,7 +32,8 @@ Used for viewing film along side scrolling notes-->
 
             <div class="title">
                 <?php
-                $query = "SELECT VideoName, Tournament, Year, Private FROM film WHERE RandID = " . ($_GET['id']);
+                $id = mysqli_real_escape_string($conn, $_GET['id']);
+                $query = "SELECT VideoName, Tournament, Year, Private FROM film WHERE RandID = " . $id;
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result)) {
                     #Redirect if they got here by accident or some other way but don't have permissions
@@ -47,7 +48,7 @@ Used for viewing film along side scrolling notes-->
 
             <div class="video">
                 <?php
-                $query = "SELECT VideoLink FROM film WHERE RandID = " . ($_GET['id']);
+                $query = "SELECT VideoLink FROM film WHERE RandID = " . $id;
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result)) {
                     $src = 'https://www.youtube.com/embed/' . ($row['VideoLink']);
@@ -60,7 +61,7 @@ Used for viewing film along side scrolling notes-->
 
             <div class="notes">
                 <?php
-                $query = "SELECT Notes FROM film WHERE RandID = " . ($_GET['id']);
+                $query = "SELECT Notes FROM film WHERE RandID = " . $id;
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_assoc($result)) {
                     echo ($row['Notes']);
