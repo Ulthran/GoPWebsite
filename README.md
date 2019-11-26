@@ -8,3 +8,15 @@ Skip ahead and GoP is now 25 years old! We are roughly 5’9” tall, 145 lbs he
 This open source website hosts GoP's heavily annotated film collection and provides a suite of workout and practice opportunities for our players. Viewing GoP film is restricted to verified GoPper accounts.
 
 <div style="text-align:center"><img src="https://raw.githubusercontent.com/Ulthran/GoPWebsite/master/assets/gvo.jpg" /></div>
+
+Some things to note:
+
+ - The database schema included is exported from a MySQL db, if you use PHPMyAdmin, you should be able to import it pretty easily
+ - Some data tables are left out of the schema (users, film, etc). This is to protect user information and to not release information that is available only to specific types of account holders. This is the one part of the project not intended to be open source.
+ - All passwords used on the server side are stored in a php file kept in the root dir called 'are_these_bananas.php'. This file is also not included here (for obvious reasons). The basic format is:
+    <?php
+       // This is a password for the SMTP server
+       $smtp_password = 'password123';
+       // ...
+    ?>
+
