@@ -1,0 +1,52 @@
+{
+  "name": "beefup",
+  "version": "1.2.0",
+  "description": "BeefUp - Just a jQuery accordion plugin",
+  "keywords": [
+    "accordion",
+    "jquery",
+    "css",
+    "javascript",
+    "plugin",
+    "collapsible"
+  ],
+  "homepage": "https://schascha.github.io/BeefUp/",
+  "authors": [
+    "Sascha Künstler <contact.schascha@gmail.com> (http://www.schaschaweb.de)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Schascha/BeefUp"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Schascha/BeefUp/issues"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "dev": "grunt",
+    "test": "eslint src/js && sass-lint src/scss/**/*.scss -v -q && jest src/js --coverage --verbose"
+  },
+  "dependencies": {
+    "jquery": ">=1.8.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.7",
+    "eslint": "^6.5.1",
+    "eslint-plugin-jest": "^22.17.0",
+    "grunt": "^1.0.4",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^2.3.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-postcss": "^0.8.0",
+    "grunt-sass": "^2.1.0",
+    "jest": "^24.9.0",
+    "jit-grunt": "^0.10.0",
+    "load-grunt-config": "^3.0.1",
+    "load-grunt-tasks": "^3.5.2",
+    "sass-lint": "^1.13.1"
+  },
+  "engines": {
+    "node": "*"
+  }
+}

@@ -1,0 +1,23 @@
+.overview {
+    padding: 20px;
+}
+
+.filter {
+    padding: 20px;
+}
+
+.ex-list {
+    width: 95%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.ex {
+    border: solid 1mm;
+    min-width: 200px;
+    min-height: 200px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+

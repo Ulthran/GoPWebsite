@@ -2,7 +2,7 @@
     
     <head>
         <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/header-user-dropdown-head.html'; ?>
-        <link rel="stylesheet" src="../assets/personal.css">
+        <link rel="stylesheet" href="../assets/personal.css">
     </head
 
     <body>

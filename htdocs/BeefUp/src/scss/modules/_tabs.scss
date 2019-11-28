@@ -1,0 +1,45 @@
+.tab {
+	&__head {
+		margin: 0 0 -1px;
+		padding: 0;
+		list-style: none;
+
+		li {
+			display: inline-block;
+			z-index: 100;
+			background: $tab-background-color;
+			border: 1px solid $tab-border-color;
+			font-weight: bold;
+
+			&.is-open {
+				border-bottom-color: transparent;
+			}
+		}
+
+		a {
+			display: block;
+			padding: 0 10px;
+			color: inherit;
+			font-size: 16px;
+			line-height: 2.5;
+			text-decoration: none;
+			white-space: nowrap;
+		}
+	}
+
+	&__item {
+		&.beefup {
+			display: none;
+			margin: 0;
+			border-radius: 0;
+
+			&.is-open {
+				display: block;
+			}
+		}
+
+		.beefup__head {
+			display: none;
+		}
+	}
+}

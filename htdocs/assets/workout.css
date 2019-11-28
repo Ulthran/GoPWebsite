@@ -1,11 +1,23 @@
 .overview {
-    
+    padding: 20px;
 }
 
 .filter {
-    
+    padding: 20px;
 }
 
 .wkout-list {
-    
+    width: 95%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
+.wkout {
+    border: solid 1mm;
+    min-width: 200px;
+    min-height: 200px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
