@@ -20,8 +20,5 @@ Some things to note:
        $smtp_password = 'password123';
        
        // ...
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 8bee0a9879d65e87c911452375f8faa0775a64f7
+       
+   Which is maybe not the smartest way of doing things.
